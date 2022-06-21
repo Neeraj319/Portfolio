@@ -14,6 +14,6 @@ jobs:
         SSH_PRIVATE_KEY : ${{ secrets.SSH_KEY_ENCODED }}
         REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
       run: |
-        zip deployment.zip -r . -x '*.git' && \
+        zip deployment.zip -r . -x \*.git\* && \
         echo ${SSH_PRIVATE_KEY} | base64 -d > sshkey && \
         scp -i sshkey deployment.zip azureuser@${REMOTE_HOST}:/home/azureuser/Portfolio.zip
