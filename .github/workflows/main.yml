@@ -9,11 +9,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Deploy to Server
-        uses: easingthemes/ssh-deploy@v2.1.5
         env:
-          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-          TARGET: '/home/azureuser/Portfolio'
-          SOURCE: './'
-          ARGS: '-rltgoDzvO --delete'
+          SSH_PRIVATE_KEY : ${{ secrets.SSH_KEY_ENCODED }}
           REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
-          REMOTE_USER: azureuser
+        run: |
+          cd code-runner && \
+          zip deployment.zip -r . && \
+          echo ${SSH_PRIVATE_KEY} | base64 -d > sshkey && \
+          scp -i sshkey deployment.zip ubuntu@${REMOTE_HOST}:/home/ubuntu/deployment.zip
