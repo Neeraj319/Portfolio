@@ -16,4 +16,4 @@ jobs:
       run: |
         zip deployment.zip -r . && \
         echo ${SSH_PRIVATE_KEY} | base64 -d > sshkey && \
-        scp -i sshkey deployment.zip azureuser@${REMOTE_HOST}:/home/azureuser/Portfolio.zip
+        scp -i sshkey deployment.zip azureuser@${REMOTE_HOST}:/home/azureuser/Portfolio.zip -x '*.git*'
