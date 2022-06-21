@@ -10,9 +10,9 @@ jobs:
       - name: Deploy to Server
         uses: easingthemes/ssh-deploy@v2.1.5
         env:
-          SSH_PRIVATE_KEY: ${{ secrets.SSH_KEY }}
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
           TARGET: '/home/azureuser/Portfolio'
           SOURCE: '/'
           ARGS: '--delete'
-          REMOTE_HOST: ${{ secrets.REMOTE_HOST_NAME }}
+          REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
           REMOTE_USER: azureuser
