@@ -3,14 +3,12 @@ name: portfolio cd
 on:
   push:
     branches: [master]
-  pull_request:
-    branches: [master]
-
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Deploy to Server
+     - uses: actions/checkout@v2
+     - name: Deploy to Server
         uses: easingthemes/ssh-deploy@v2.1.5
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_KEY }}
