@@ -10,10 +10,11 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Deploy to Server
+      uses: easingthemes/ssh-deploy@v2.1.5
       env:
-        SSH_PRIVATE_KEY : ${{ secrets.SSH_KEY_ENCODED }}
+        SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+        TARGET: '/home/azureuser/Portfolio'
+        SOURCE: '/'
+        ARGS: '--delete'
         REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
-      run: |
-        zip deployment.zip -r . -x \*.git\* && \
-        echo ${SSH_PRIVATE_KEY} | base64 -d > sshkey && \
-        scp -i sshkey deployment.zip azureuser@${REMOTE_HOST}:/home/azureuser/Portfolio.zip
+        REMOTE_USER: azureuser 
