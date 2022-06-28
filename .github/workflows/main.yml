@@ -12,7 +12,7 @@ jobs:
       uses: easingthemes/ssh-deploy@v2.1.5
       env:
         SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-        TARGET: '/var/www/html/portfolio'
+        TARGET: '/home/azureuser/Portfolio'
         SOURCE: '/'
         ARGS: '--delete'
         REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
